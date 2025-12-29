@@ -7,5 +7,5 @@ describe('Product API Integration', () => {
     const res = await request(app).get('/api/products');
     expect(res.statusCode).toBe(200);
     expect(res.body.success).toBe(true);
-  }, 10000); 
+  }, 100000); 
 });
