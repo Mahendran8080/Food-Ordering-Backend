@@ -23,19 +23,20 @@ pipeline {
         }
 
         stage('Install & Test') {
-            steps {
-                echo 'Installing Dependencies...'
-                sh 'npm ci'
-                
-                echo 'Running Quality Checks (Lint)...'
-                // This will fail the build if there are syntax/style errors
-                // sh 'npm run lint' 
-
-                echo 'Running Unit & Integration Tests...'
-                // This ensures the logic and DB connections work
-                sh 'npm test'
-            }
-        }
+    environment {
+        // Provide a local or test DB string for the test phase
+        MONGO_URI = "mongodb://localhost:27017/food_test"
+        REDIS_URL = "redis://localhost:6379"
+        JWT_SECRET = "testsecret"
+    }
+    steps {
+        echo 'Installing Dependencies...'
+        sh 'npm ci' 
+        
+        echo 'Running Unit & Integration Tests...'
+        sh 'npm test'
+    }
+}
 
         stage('Build Docker Image') {
             steps {
