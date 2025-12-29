@@ -18,7 +18,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Replace with your actual repo URL
-                git branch: 'main', url: 'https://github.com/your-username/food-ordering-system.git'
+                git branch: 'main', url: 'https://github.com/Mahendran8080/Food-Ordering-Backend'
             }
         }
 
