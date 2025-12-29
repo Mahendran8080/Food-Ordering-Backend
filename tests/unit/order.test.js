@@ -7,8 +7,12 @@ const redisClient = require('../../config/redis'); // 1. Import the client
 // We "mock" the database so we don't need MongoDB running for this test
 jest.mock('../../models/Order');
 
+const mongoose = require('mongoose');
+
+
 afterAll(async () => {
-  await redisClient.quit(); 
+  await mongoose.connection.close(); // Close DB
+  await redisClient.quit();          // Close Redis
 });
 
 describe('Order Utility Tests', () => {

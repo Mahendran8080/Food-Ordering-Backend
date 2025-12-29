@@ -25,7 +25,7 @@ pipeline {
         stage('Install & Test') {
             steps {
                 echo 'Installing Dependencies...'
-                sh 'npm install'
+                sh 'npm ci'
                 
                 echo 'Running Quality Checks (Lint)...'
                 // This will fail the build if there are syntax/style errors
